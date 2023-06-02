@@ -71,7 +71,6 @@ function App() {
         }, 1500);
       })
       .catch((err) => {
-        console.log(err.response.data.message);
         setLoading(false);
         setErrorMsg(err);
       });
