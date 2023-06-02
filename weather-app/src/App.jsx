@@ -23,7 +23,6 @@ import { TbTemperatureCelsius } from "react-icons/tb";
 import Loading from "./pages/loading";
 import { AxiosIntance } from "./api/Api";
 
-// const APIkey = `bcf2048bc3be154bded8f277f580ba2e`;
 const APIkey = `0221035d6f27d88840959f655f6409d0`;
 
 function App() {
