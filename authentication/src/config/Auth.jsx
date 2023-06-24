@@ -3,8 +3,8 @@ import Cookies from "js-cookie";
 
 // token autentikasi dan role pengguna
 const setAuthTokenAndRole = (token, role) => {
-  Cookies.set("authToken", token);
-  Cookies.set("userRole", role);
+  Cookies.set("token", token);
+  Cookies.set("role", role);
 
   // Mengatur token autentikasi dalam header permintaan
   if (token) {
@@ -21,8 +21,8 @@ const getUserRole = () => {
 
 const signOut = () => {
   // Menghapus token autentikasi dan role dari cookie
-  Cookies.remove("authToken");
-  Cookies.remove("userRole");
+  Cookies.remove("token");
+  Cookies.remove("role");
 
   // Menghapus token autentikasi dari header permintaan
   delete apiIntance.defaults.headers.common["Authorization"];
