@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { api, setAuthTokenAndRole } from "../../apis/Api";
+import { apiIntance } from "../../apis/Api";
+import { setAuthTokenAndRole } from "../../config/Auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [navigate, setNavigate] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   const handleLogin = async () => {
     try {
-      const response = await api.post("/mitra/login", {
+      const response = await apiIntance.post("/mitra/login", {
         email: email,
         password: password,
       });
@@ -17,20 +19,22 @@ const Login = () => {
       const token = response.data.data.accessToken;
       const role = response.data.data.role;
 
-      // Set token autentikasi dan role pengguna dalam Axios instance
+      // Set token autentikasi dan role
       setAuthTokenAndRole(token, role);
 
-      // Redirect atau lakukan tindakan lainnya setelah berhasil login
       console.log("Login berhasil");
-      // Redirect atau lakukan tindakan lainnya setelah berhasil login
+      // redirect
       if (role === "mitra") {
         window.location.href = "/user";
-        alert("login");
+        alert("selamat data mitra");
+      } else if (role == "admin") {
+        alert("selamat datang admin");
       } else {
-        <Navigate to={`/user`} />;
+        window.location.href = "/";
       }
     } catch (error) {
-      console.error("Login gagal", error);
+      console.error("Login gagal", error.response.data.message);
+      setErrMsg(error.response.data.message);
     }
   };
   if (navigate) {
@@ -56,6 +60,7 @@ const Login = () => {
         <button type="button" onClick={handleLogin}>
           Login
         </button>
+        {errMsg && <div style={{ color: "red" }}>{errMsg}</div>}
       </form>
     </div>
   );

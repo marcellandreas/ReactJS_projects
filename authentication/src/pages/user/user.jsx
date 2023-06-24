@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { signOut } from "../../apis/Api";
+import { signOut } from "../../config/Auth";
 
 const User = () => {
   const navigate = useNavigate();
