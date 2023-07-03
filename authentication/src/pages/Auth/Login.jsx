@@ -28,6 +28,7 @@ const Login = () => {
         window.location.href = "/user";
         alert("selamat data mitra");
       } else if (role == "admin") {
+        window.location.href = "/admin";
         alert("selamat datang admin");
       } else {
         window.location.href = "/";
